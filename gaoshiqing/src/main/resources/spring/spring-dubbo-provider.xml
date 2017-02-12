@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+	<context:property-placeholder
+    	ignore-unresolvable="true" location="classpath:dubbo.properties" /> 
+
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}"/>
+	<!--
+	<dubbo:monitor protocol="${dubbo.monitor.protocol}"/>  
+	-->
+	<!-- 使用zookeeper广播注册中心暴露服务地址 -->
+	<dubbo:registry address="${dubbo.registry.address}" />
+
+	<!-- 用dubbo协议在20880端口暴露服务 -->
+	<dubbo:protocol name="dubbo" port="${dubbo.registry.port}"/>
+
+	<!-- 和本地bean一样实现服务 -->
+	<!-- 系统管理 -->
+	<bean id="userManageService" class="com.mocentre.tehui.system.provider.UserManageServiceImpl" />
+	<bean id="loginManageService" class="com.mocentre.tehui.system.provider.LoginManageServiceImpl" />
+	<bean id="ruleManageService" class="com.mocentre.tehui.system.provider.RuleManageServiceImpl" />
+	<bean id="roleManageService" class="com.mocentre.tehui.system.provider.RoleManageServiceImpl" />
+	<bean id="areasManageService" class="com.mocentre.tehui.system.provider.AreasManageServiceImpl" />
+	
+	<!-- 订单管理  -->
+	<bean id="orderManageService" class="com.mocentre.tehui.buy.provider.OrderManageServiceImpl" />
+	<bean id="shopCartManageServiceFT" class="com.mocentre.tehui.buy.provider.front.ShopCartManageServiceImpl" />
+	
+	<!-- 邮费模板模块 -->
+	<bean id="freightMouldManageService" class="com.mocentre.tehui.fee.provider.FreightMouldManageServiceImpl" />
+	<bean id="postageConditionManageService" class="com.mocentre.tehui.fee.provider.PostageConditionManageServiceImpl" />
+	<!-- 店铺模块 -->
+	<bean id="shopManageService" class="com.mocentre.tehui.shop.provider.ShopManageServiceImpl" />
+	<!-- 发现页 -->
+	<bean id="discoverManageService" class="com.mocentre.tehui.goods.provider.DiscoverManageServiceImpl" />
+	<!--商品-->
+	<bean id="attributeManageService" class="com.mocentre.tehui.goods.provider.AttributeManageServiceImpl" />
+	<bean id="channelManageService" class="com.mocentre.tehui.goods.provider.ChannelManageServiceImpl" />
+	<bean id="categoryManageService" class="com.mocentre.tehui.goods.provider.CategoryManageServiceImpl" />
+	<bean id="goodsManageService" class="com.mocentre.tehui.goods.provider.GoodsManageServiceImpl" />
+	<bean id="couponManageService" class="com.mocentre.tehui.goods.provider.CouponManageServiceImpl" />
+	<bean id="navigateManageService" class="com.mocentre.tehui.goods.provider.NavigateMangeServiceImpl" />
+	<bean id="navigateManageServiceFT" class="com.mocentre.tehui.goods.provider.front.NavigateManageServiceImpl" />
+
+	<!--买家用户-->
+	<bean id="customerInfoManageService" class="com.mocentre.tehui.ps.provider.CustomerInfoManageServiceImpl" />
+	<!-- 专题管理 -->
+	<bean id="subjectManageService" class="com.mocentre.tehui.sub.provider.SubjectManageServiceImpl" />
+
+	
+	<!-- 前台接口 -->
+	<bean id="couponManageServiceFT" class="com.mocentre.tehui.goods.provider.front.CouponManageServiceImpl" />
+	<bean id="customerInfoManageServiceFT" class="com.mocentre.tehui.ps.provider.front.CustomerInfoManageServiceImpl" />
+	<bean id="freightMouldManageServiceFT" class="com.mocentre.tehui.fee.provider.front.FreightMouldManageServiceImpl" />
+	<bean id="storeManageServiceFT" class="com.mocentre.tehui.goods.provider.front.StoreManageServiceImpl" />
+	<bean id="customerLoginManageServiceFT" class="com.mocentre.tehui.system.provider.front.LoginManageServiceImpl" />
+	<bean id="orderManageServiceFT" class="com.mocentre.tehui.buy.provider.front.OrderManageServiceImpl" />
+
+	<dubbo:service interface="com.mocentre.tehui.UserManageService" version="${dubbo.method.version}" ref="userManageService">
+		<dubbo:method name="queryPage" timeout="5000" retries="0" />
+		<dubbo:method name="queryUserRole" timeout="5000" retries="0" />
+		<dubbo:method name="save" timeout="5000" retries="0" />
+		<dubbo:method name="delete" timeout="5000" retries="0" />
+	</dubbo:service>
+	<dubbo:service interface="com.mocentre.tehui.RoleManageService" version="${dubbo.method.version}" ref="roleManageService">
+		<dubbo:method name="queryPage" timeout="5000" retries="0" />
+		<dubbo:method name="queryEnableRole" timeout="5000" retries="0" />
+		<dubbo:method name="preAdd" timeout="5000" retries="0" />
+		<dubbo:method name="preEdit" timeout="5000" retries="0" />
+		<dubbo:method name="save" timeout="5000" retries="0" />
+		<dubbo:method name="delete" timeout="5000" retries="0" />
+	</dubbo:service>
+	<dubbo:service interface="com.mocentre.tehui.LoginManageService" version="${dubbo.method.version}" ref="loginManageService">
+		<dubbo:method name="login" timeout="5000" retries="0" />
+	</dubbo:service>
+	<dubbo:service interface="com.mocentre.tehui.RuleManageService" version="${dubbo.method.version}" ref="ruleManageService">
+		<dubbo:method name="queryList" timeout="5000" retries="0" />
+		<dubbo:method name="queryCascade" timeout="5000" retries="0" />
+		<dubbo:method name="save" timeout="5000" retries="0" />
+		<dubbo:method name="delete" timeout="5000" retries="0" />
+		<dubbo:method name="queryById" timeout="5000" retries="0" />
+	</dubbo:service>
+	<dubbo:service interface="com.mocentre.tehui.AreasManageService" version="${dubbo.method.version}" ref="areasManageService">
+		<dubbo:method name="getAll" timeout="2000" retries="0" />
+		<dubbo:method name="getAllProvinceTwoLinkage" timeout="5000" retries="0" />
+		<dubbo:method name="getAllProvinceThreeLinkage" timeout="5000" retries="0" />
+		<dubbo:method name="get" timeout="2000" retries="0" />
+		<dubbo:method name="getAreas" timeout="2000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.OrderManageService" version="${dubbo.method.version}" ref="orderManageService">
+		<dubbo:method name="queryPage" timeout="5000" retries="0" />
+		<dubbo:method name="queryDetail" timeout="5000" retries="0" />
+		<dubbo:method name="deliver" timeout="5000" retries="0" />
+		<dubbo:method name="editDeliver" timeout="5000" retries="0" />
+	</dubbo:service>
+	
+	
+	<dubbo:service interface="com.mocentre.tehui.FreightMouldManageService" version="${dubbo.method.version}" ref="freightMouldManageService">
+		<dubbo:method name="queryFreightMouldPage" timeout="5000" retries="0"/>
+		<dubbo:method name="getFreightMouldById" timeout="5000" retries="0"/>
+		<dubbo:method name="addFreightMould" timeout="5000" retries="0"/>
+		<dubbo:method name="editFreightMould" timeout="5000" retries="0"/>
+		<dubbo:method name="deleteFreightMould" timeout="5000" retries="0"/>
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.PostageConditionManageService" version="${dubbo.method.version}" ref="postageConditionManageService">
+		<dubbo:method name="getPostageCondition" timeout="2000" retries="0"/>
+		<dubbo:method name="queryPostageCondition" timeout="2000" retries="0"/>
+		<dubbo:method name="addPostageCondition" timeout="2000" retries="0"/>
+		<dubbo:method name="editPostageCondition" timeout="2000" retries="0"/>
+		<dubbo:method name="deletePostageCondition" timeout="2000" retries="0"/>
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.ShopManageService" version="${dubbo.method.version}" ref="shopManageService">
+		<dubbo:method name="queryPage" timeout="2000" retries="0"/>
+		<dubbo:method name="getShop" timeout="2000" retries="0"/>
+		<dubbo:method name="getShopListInName" timeout="2000" retries="0"/>
+		<dubbo:method name="queryShop" timeout="2000" retries="0"/>
+		<dubbo:method name="addShop" timeout="2000" retries="0"/>
+		<dubbo:method name="editShop" timeout="2000" retries="0"/>
+		<dubbo:method name="deleteShop" timeout="2000" retries="0"/>
+		<dubbo:method name="examineShop" timeout="2000" retries="0"/>
+		<dubbo:method name="operationShop" timeout="2000" retries="0"/>
+	</dubbo:service>
+
+	<dubbo:service interface="com.mocentre.tehui.AttributeManageService" version="${dubbo.method.version}" ref="attributeManageService">
+		<dubbo:method name="getAll" timeout="2000" retries="0" />
+		<dubbo:method name="queryList" timeout="2000" retries="0" />
+		<dubbo:method name="del" timeout="2000" retries="0" />
+		<dubbo:method name="update" timeout="2000" retries="0" />
+		<dubbo:method name="addAttribute" timeout="2000" retries="0" />
+		<dubbo:method name="getById" timeout="2000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.DiscoverManageService" version="${dubbo.method.version}" ref="discoverManageService">
+		<dubbo:method name="queryPage" timeout="5000" retries="0" />
+		<dubbo:method name="preEdit" timeout="5000" retries="0" />
+		<dubbo:method name="queryDiscover" timeout="5000" retries="0" />
+		<dubbo:method name="addDiscover" timeout="2000" retries="0" />
+		<dubbo:method name="updateDiscover" timeout="2000" retries="0" />
+		<dubbo:method name="deleteDiscover" timeout="2000" retries="0" />
+	</dubbo:service>
+
+	<dubbo:service interface="com.mocentre.tehui.ChannelManageService" version="${dubbo.method.version}" ref="channelManageService">
+		<dubbo:method name="getChannelByShopId" timeout="2000" retries="0" />
+		<dubbo:method name="getChannelById" timeout="2000" retries="0" />
+		<dubbo:method name="addChannel" timeout="2000" retries="0" />
+		<dubbo:method name="delChannel" timeout="2000" retries="0" />
+		<dubbo:method name="delChannnelList" timeout="2000" retries="0" />
+	</dubbo:service>
+
+	<dubbo:service interface="com.mocentre.tehui.CategoryManageService" version="${dubbo.method.version}" ref="categoryManageService">
+		<dubbo:method name="getCategoryByShopId" timeout="2000" retries="0" />
+		<dubbo:method name="getCategoryById" timeout="2000" retries="0" />
+		<dubbo:method name="addCategory" timeout="2000" retries="0" />
+		<dubbo:method name="delCategory" timeout="2000" retries="0" />
+		<dubbo:method name="delCategoryList" timeout="2000" retries="0" />
+		<dubbo:method name="editCategory" timeout="2000" retries="0" />
+	</dubbo:service>
+
+	<dubbo:service interface="com.mocentre.tehui.CustomerInfoManageService" version="${dubbo.method.version}" ref="customerInfoManageService">
+		<dubbo:method name="queryPage" timeout="2000" retries="0" />
+		<dubbo:method name="getById" timeout="2000" retries="0" />
+		<dubbo:method name="deleteCustomerByIdList" timeout="2000" retries="0" />
+	</dubbo:service>
+
+	<dubbo:service interface="com.mocentre.tehui.GoodsManageService" version="${dubbo.method.version}" ref="goodsManageService">
+		<dubbo:method name="queryPage" timeout="2000" retries="0" />
+		<dubbo:method name="queryByCategory" timeout="5000" retries="0" />
+		<dubbo:method name="deleteByIdList" timeout="2000" retries="0" />
+		<dubbo:method name="deleteById" timeout="2000" retries="0" />
+		<dubbo:method name="getById" timeout="2000" retries="0" />
+		<dubbo:method name="addSkuInfo" timeout="20000" retries="0" />
+		<dubbo:method name="addGoodsBaseInfo" timeout="20000" retries="0" />
+		<dubbo:method name="addGoodsShareInfo" timeout="20000" retries="0" />
+		<dubbo:method name="addGoodsParamInfo" timeout="2000" retries="0" />
+		<dubbo:method name="updateGoodsBaseInfo" timeout="2000" retries="0" />
+		<dubbo:method name="updateGoodsStorageList" timeout="2000" retries="0" />
+		<dubbo:method name="addGoodsDetailInfo" timeout="2000" retries="0" />
+		<dubbo:method name="goodsStorageAndPrice" timeout="2000" retries="0" />
+		<dubbo:method name="goodsDetailPage" timeout="2000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.CouponManageService" version="${dubbo.method.version}" ref="couponManageService">
+		<dubbo:method name="queryCouponPage" timeout="5000" retries="0" />
+		<dubbo:method name="queryCouponDetailPage" timeout="5000" retries="0" />
+		<dubbo:method name="preEdit" timeout="5000" retries="0" />
+		<dubbo:method name="getCoupon" timeout="2000" retries="0" />
+		<dubbo:method name="addCoupon" timeout="50000" retries="0" />
+		<dubbo:method name="updateCoupon" timeout="2000" retries="0" />
+		<dubbo:method name="deleteCoupon" timeout="2000" retries="0" />
+		<!-- <dubbo:method name="queryCouponDeatilByCustomerId" timeout="2000" retries="0" /> -->
+	</dubbo:service>
+
+	<dubbo:service interface="com.mocentre.tehui.SubjectManageService" version="${dubbo.method.version}" ref="subjectManageService">
+		<dubbo:method name="querySubjectPage" timeout="50000" retries="0" />
+		<dubbo:method name="getSubjectById" timeout="50000" retries="0" />
+		<dubbo:method name="addSubject" timeout="50000" retries="0" />
+		<dubbo:method name="updateSubject" timeout="50000" retries="0" />
+		<dubbo:method name="deleteSubject" timeout="5000" retries="0" />
+		<dubbo:method name="getCategoryAndTmp" timeout="20000" retries="0" />
+		<dubbo:method name="getSubjectTemplet" timeout="20000" retries="0" />
+		<dubbo:method name="preEdit" timeout="20000" retries="0" />
+		<dubbo:method name="show" timeout="2000" retries="0" />
+	</dubbo:service>
+
+	<dubbo:service interface="com.mocentre.tehui.NavigateMangeService" version="${dubbo.method.version}" ref="navigateManageService">
+		<dubbo:method name="getAll" timeout="50000" retries="0" />
+		<dubbo:method name="addNavigate" timeout="50000" retries="0" />
+		<dubbo:method name="delByIdList" timeout="50000" retries="0" />
+	</dubbo:service>
+	
+	<!-- 前端服务接口 -->
+	<dubbo:service interface="com.mocentre.tehui.frontend.service.LoginManageService" version="${dubbo.method.version}" ref="customerLoginManageServiceFT">
+		<dubbo:method name="customerLoginByPassword" timeout="50000" retries="0" />
+		<dubbo:method name="customerLoginByVerificationCode" timeout="50000" retries="0" />
+		<dubbo:method name="sendVerificationCode" timeout="50000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.frontend.service.CouponManageService" version="${dubbo.method.version}" ref="couponManageServiceFT">
+		<dubbo:method name="queryCouponDeatilByCustomerId" timeout="5000" retries="0" />
+		<dubbo:method name="queryUnusedCoupon" timeout="5000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.frontend.service.CustomerInfoManageService" version="${dubbo.method.version}" ref="customerInfoManageServiceFT">
+		<dubbo:method name="getCustomerInfoByUserName" timeout="5000" retries="0" />
+		<dubbo:method name="getAddressByCustomerId" timeout="5000" retries="0" />
+		<dubbo:method name="saveCustomerInfo" timeout="5000" retries="0" />
+		<dubbo:method name="getPasswordIsNull" timeout="5000" retries="0" />
+		<dubbo:method name="saveCustomerAddress" timeout="5000" retries="0" />
+		<dubbo:method name="deleteCustomerAddressByIdList" timeout="5000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.frontend.service.FreightMouldManageService" version="${dubbo.method.version}" ref="freightMouldManageServiceFT">
+		<dubbo:method name="getFreightCalculation" timeout="5000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.frontend.service.StoreManageService" version="${dubbo.method.version}" ref="storeManageServiceFT">
+		<dubbo:method name="getStore" timeout="5000" retries="0" />
+		<dubbo:method name="getStoreList" timeout="5000" retries="0" />
+		<dubbo:method name="addStore" timeout="5000" retries="0" />
+		<dubbo:method name="deleteStore" timeout="5000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.frontend.service.OrderManageService" version="${dubbo.method.version}" ref="orderManageServiceFT">
+		<dubbo:method name="testOrder" timeout="50000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.frontend.service.ShopCartManageService" version="${dubbo.method.version}" ref="shopCartManageServiceFT">
+		<dubbo:method name="add" timeout="5000" retries="0" />
+		<dubbo:method name="queryList" timeout="5000" retries="0" />
+		<dubbo:method name="changeNum" timeout="5000" retries="0" />
+		<dubbo:method name="delete" timeout="5000" retries="0" />
+	</dubbo:service>
+	
+	<dubbo:service interface="com.mocentre.tehui.frontend.service.NavigateManageService" version="${dubbo.method.version}" ref="navigateManageServiceFT">
+		<dubbo:method name="getNavigateByShopId" timeout="5000" retries="0" />
+	</dubbo:service>
+	
+	
+</beans>
