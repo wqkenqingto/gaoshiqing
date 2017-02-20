@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../../workplace/dev/api_copy/adbigdata-api.iml" filepath="$PROJECT_DIR$/../../../workplace/dev/api_copy/adbigdata-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/apistudy/apistudy.iml" filepath="$PROJECT_DIR$/apistudy/apistudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/gaoshiqing/gaoshiqing.iml" filepath="$PROJECT_DIR$/gaoshiqing/gaoshiqing.iml" />
       <module fileurl="file://$PROJECT_DIR$/../gaoshiqingapi/gaoshiqingapi.iml" filepath="$PROJECT_DIR$/../gaoshiqingapi/gaoshiqingapi.iml" />
       <module fileurl="file://$PROJECT_DIR$/../gaoshiqingweb/gaoshiqingweb.iml" filepath="$PROJECT_DIR$/../gaoshiqingweb/gaoshiqingweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../workplace/dev/ttehui_copy/ttehui.iml" filepath="$PROJECT_DIR$/../../../workplace/dev/ttehui_copy/ttehui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../workplace/dev/web_copy/ttehui-web.iml" filepath="$PROJECT_DIR$/../../../workplace/dev/web_copy/ttehui-web.iml" />
     </modules>
   </component>
 </project>

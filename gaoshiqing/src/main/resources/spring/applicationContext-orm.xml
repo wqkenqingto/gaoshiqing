@@ -12,7 +12,7 @@
     <description>Spring-orm配置文件 </description>
     
     <!--扫描com.包下包含spring 注解的类，自动注入 -->
-    <context:component-scan base-package="com.mocentre.tehui" />
+    <context:component-scan base-package="com.gaoshiqing.blogadmin" />
     
     <context:property-placeholder
             ignore-unresolvable="true" location="classpath*:/spring/application.properties" />
@@ -67,7 +67,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
-        <property name="typeAliasesPackage" value="com.mocentre.tehui.buy.model,com.mocentre.tehui.core.model,com.mocentre.tehui.fee.model,com.mocentre.tehui.goods.model,com.mocentre.tehui.lottery.model,com.mocentre.tehui.ps.model,com.mocentre.tehui.shop.model,com.mocentre.tehui.sub.model,com.mocentre.tehui.system.model" />
+        <property name="typeAliasesPackage" value="com.com.blogadmin.gaoshiqing.buy.model,com.com.blogadmin.gaoshiqing.core.model,com.com.blogadmin.gaoshiqing.fee.model,com.com.blogadmin.gaoshiqing.goods.model,com.com.blogadmin.gaoshiqing.lottery.model,com.com.blogadmin.gaoshiqing.ps.model,com.com.blogadmin.gaoshiqing.shop.model,com.com.blogadmin.gaoshiqing.sub.model,com.com.blogadmin.gaoshiqing.system.model" />
         <property name="mapperLocations" value="classpath*:mybatis/mapper/**/*.xml" />
     </bean>
     
@@ -91,14 +91,14 @@
     </tx:advice>
 
     <aop:config>
-        <aop:pointcut id="webPc" expression="execution(* com.mocentre.*.*.service.*.*(..))" />
+        <aop:pointcut id="webPc" expression="execution(* com.gaoshiqing.blogadmin.*.*.service.*.*(..))" />
         <aop:advisor pointcut-ref="webPc" advice-ref="readTxAdvice" />
     </aop:config>
     
     <!-- 启用aop  -->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
-	<import resource="classpath:spring/spring-config-redis.xml" />
-    <import resource="classpath:spring/spring-bean.xml" />
+	<!--<import resource="classpath:spring/spring-config-redis.xml" />-->
+    <!--<import resource="classpath:spring/spring-bean.xml" />-->
     <import resource="classpath:spring/spring-dubbo-provider.xml" />
 </beans>

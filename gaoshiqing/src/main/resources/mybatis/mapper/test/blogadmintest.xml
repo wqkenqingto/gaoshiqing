@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mocentre.tehui.goods.model.BlogAdminTest">
+    <resultMap id="get-BlogAdminTest-result" type="com.gaoshiqing.blogadmin.model">
+        <id property="id" column="id"/>
+        <!-- 商品属性名-->
+        <result property="name" column="name"/>
+        <!--说明-->
+        <result property="memo" column="memo"/>
+        <!--是否删除-->
+        <result property="is_deleted" column="is_deleted"/>
+        <!-- 创建时间-->
+        <result property="gmtCreated" column="gmt_created"/>
+        <!-- 修改时间-->
+        <result property="gmtModified" column="gmt_modified"/>
+    </resultMap>
+
+    <sql id="BlogAdminTest_Base_Column_List">
+      name,id,memo, is_deleted,gmtCreated,gmtModified
+    </sql>
+    <insert id="BlogAdminTest_insert" parameterType="com.mocentre.tehui.goods.model.BlogAdminTest">
+        insert into bloagadmin_test
+        ( name,id,memo,is_deleted,gmt_created,gmt_modified)
+        values
+        (
+        #{name},
+        #{id},
+        #{memo},
+        0,
+        now(),
+        now()
+        )
+        <selectKey keyProperty="id" resultType="long" order="AFTER">
+            SELECT @@IDENTITY
+        </selectKey>
+    </insert>
+
+</mapper>

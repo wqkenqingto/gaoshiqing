@@ -96,5 +96,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-test:3.2.17.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: javax.mail:mail:1.4.7" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="module" module-name="gaoshiqingapi" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.9" level="project" />
   </component>
 </module>

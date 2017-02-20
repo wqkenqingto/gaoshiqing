@@ -7,11 +7,11 @@
        <context:property-placeholder
                ignore-unresolvable="true" location="classpath:system.properties" />
 
-              <bean id="checkLoginService" class="com.mocentre.tehui.core.service.support.CheckLoginService">
-                     <property name="domain" value="${domain}"></property>
-                     <property name="publicKey" value="${publicKey}"></property>
-                     <property name="secretKey" value="${secretKey}"></property>
-                     <property name="debugSession" value="${debugSession}"></property>
-              </bean>
+              <!--<bean id="checkLoginService" class="com.gaoshiqing.blogadmin.core.service.support.CheckLoginService">-->
+                     <!--<property name="domain" value="${domain}"></property>-->
+                     <!--<property name="publicKey" value="${publicKey}"></property>-->
+                     <!--<property name="secretKey" value="${secretKey}"></property>-->
+                     <!--<property name="debugSession" value="${debugSession}"></property>-->
+              <!--</bean>-->
 
 </beans>

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>gaoshiqing</groupId>
+    <groupId>com.gaoshiqing</groupId>
     <artifactId>gaoshiqing</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -35,13 +35,16 @@
         <java_version>1.7</java_version>
     </properties>
 
+
+
     <dependencies>
-        <!--引入dubbo中的接口包-->
+
         <!--<dependency>-->
-        <!--<groupId>com.mocentre</groupId>-->
-        <!--<artifactId>gaoshiqingapi</artifactId>-->
-        <!--<version>1.0.0</version>-->
+            <!--<groupId>com.gaoshiqing</groupId>-->
+            <!--<artifactId>gaoshiqingapi</artifactId>-->
+            <!--<version>1.0.0-SNAPSHOT</version>-->
         <!--</dependency>-->
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
@@ -352,6 +355,16 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
+        <dependency>
+            <groupId>com.gaoshiqing</groupId>
+            <artifactId>gaoshiqingapi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+
+
+
+
 
     </dependencies>
 
@@ -495,6 +508,6 @@
             </plugin>
 
         </plugins>
-        <finalName>gaoshiqing</finalName>
+        <finalName>com.blogadmin.gaoshiqing</finalName>
     </build>
 </project>
